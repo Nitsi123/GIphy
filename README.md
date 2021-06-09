@@ -1,1 +1,1 @@
-# GIphy
+# Giphy
