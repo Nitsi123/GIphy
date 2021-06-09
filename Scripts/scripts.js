@@ -38,19 +38,30 @@ function getTextValue(){
 
 function searchGif(value)
 {
-    url = `https://api.giphy.com/v1/gifs/translate?api_key=yXOGxS96COBv6Htc0SkNAHuv5jBwULqL&s=` + value
-    displayLoading()
-    fetch(url, {mode: 'cors'})
-    .then(function(response) {
-      
-    return response.json();
-      
-    })
-    .then(function(response) {
-      console.log(response)
-      img.src = response.data.images.original.url;
-      hideLoading()
-    });
+    res = value.toLowerCase();
+    if(res == "goldy" || value == "dimpy"){
+        img.src = "sample.jpeg";
+        img.classList.add("visible")
+        img.classList.add("sample")
+        return
+    }
+    else{
+
+        url = `https://api.giphy.com/v1/gifs/translate?api_key=yXOGxS96COBv6Htc0SkNAHuv5jBwULqL&s=` + value
+        displayLoading()
+        fetch(url, {mode: 'cors'})
+        .then(function(response) {
+        
+        return response.json();
+        
+        })
+        .then(function(response) {
+        console.log(response)
+        img.src = response.data.images.original.url;
+        hideLoading()
+        });
+    }
+
 
 }
 
@@ -62,6 +73,7 @@ newSearch.addEventListener("click", function(e)
     newDivContainer.classList.add("invisible")
     form.classList.toggle("invisible")
     img.classList.remove("visible")
+    img.classList.remove("sample")
     const value = document.getElementById("search");
     value.value = ""
 })
